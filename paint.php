@@ -37,15 +37,9 @@ if (!isset($_SESSION['user'])) {
 	
 			window.onload = function() {
 				var canvas    = document.getElementById('myCanvas');
-				canvas.width  = 300;
-				canvas.height = 400;
+				canvas.width  = 350;
+				canvas.height = 350;
 				var context   = canvas.getContext('2d');
-	
-				canvas.style.marginLeft = ((window.innerWidth - canvas.width) / 2) + "px";
-	
-				window.onresize = function() {
-					canvas.style.marginLeft = ((window.innerWidth - canvas.width) / 2) + "px";
-				};
 	
 				setSize();
 				setColor();
@@ -65,19 +59,19 @@ if (!isset($_SESSION['user'])) {
 	
 				var draw = function(e) {
 					if (isDrawing) {
-						commands.push({
-							command : "draw",
-							x : e.x - this.offsetLeft,
-							y : e.y - this.offsetTop,
-							size: size / 2,
-							color: color
-						});
-	
-						context.beginPath();
-						context.fillStyle = color;
-						context.arc(e.x - this.offsetLeft, e.y - this.offsetTop, size / 2, 0, 2 * Math.PI);
-						context.fill();
-						context.closePath();
+						 var rect = canvas.getBoundingClientRect();
+                commands.push({
+                    command : "draw",
+                    x : e.clientX - rect.left,
+                    y : e.clientY - rect.top,
+                    size: size / 2,
+                    color: color
+                });
+                context.beginPath();
+                context.fillStyle = color;
+                context.arc(e.clientX - rect.left, e.clientY - rect.top, size / 2, 0, 2 * Math.PI);
+                context.fill();
+                context.closePath();
 					}
 				};
 	
@@ -104,9 +98,33 @@ if (!isset($_SESSION['user'])) {
     	</script>
 	</head>
 	<body class="design">
-    <div class="container">
-		<canvas style="border:1px solid black;background: white;" id="myCanvas"></canvas>
-    <div class="panel panel-default col-md-12" id="my-tools">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Pictionnary</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="main.php">Retour</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top:99px;">
+    	<div class="col-lg-12 text-center" style="border-radius:9px;background: white; padding:9px;">
+			<canvas style="border:1px solid black;background: white;" id="myCanvas" width="350" height="350"></canvas>
+		</div>
+		<div class="col-lg-12" >
+			<br />
+		</div>
+    <div class="col-lg-12 " id="my-tools" style="border-radius:9px;background: white;">
     	<div class="panel-body">
         	<form name="tools" action="req_paint.php" method="post" class="form-horizontal">
             
@@ -132,8 +150,6 @@ if (!isset($_SESSION['user'])) {
             <br />
 
             <div class="form-group text-center">
-
-                <a class="btn btn-danger" href="main.php">Retour</a>
                 <input class="btn btn-primary" id="restart" type="button" value="Recommencer"/>
                 <input type="hidden" id="commands" name="commands"/>
                 <input type="hidden" id="picture" name="picture"/>

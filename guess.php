@@ -21,21 +21,22 @@ if (!isset($_SESSION['user'])) {
        <!-- Latest compiled and minified JavaScript -->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    	<script type="text/javascript">
+    	<style type="text/css">
+        body.design{
+                background: #EEEBDA url('img/bg.png');
+                background-size: cover;
+                background-position: center;
+            }
+        </style>
+      <script type="text/javascript">
                         var size, color;
                         var commands = <?= $commands ?>;
 
                         window.onload = function() {
                             var canvas    = document.getElementById('myCanvas2');
-                            canvas.width  = 300;
-                            canvas.height = 400;
+                            canvas.width  = 350;
+                            canvas.height = 350;
                             var context   = canvas.getContext('2d');
-
-                            canvas.style.marginLeft = ((window.innerWidth - canvas.width) / 2) + "px";
-
-                            window.onresize = function() {
-                                canvas.style.marginLeft = ((window.innerWidth - canvas.width) / 2) + "px";
-                            };
 
                             var draw = function(c) {
                                 context.beginPath();
@@ -67,16 +68,38 @@ if (!isset($_SESSION['user'])) {
                                 }
 
                                 i++;
-                                setTimeout(iterate,30);
+                                setTimeout(iterate,20);
                             };
 
                             iterate();
                         };
 		 </script>
 	</head>
-    <body>
-     <canvas id="myCanvas2"></canvas>
-        <a id="btn-retour-guess" class="btn btn-danger" href="main.php">Retour</a>
+    <body class="design">
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Pictionnary</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="main.php">Retour</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top:99px;">
+      <div class="col-lg-12 text-center" style="border-radius:9px;background: white; padding:9px;">
+          <canvas id="myCanvas2" width="350" height="350" style="border:1px solid black;background: white;"></canvas>
+      </div>
+    </div>
     </body>
 </html>
 
