@@ -1,7 +1,7 @@
-# WebS
+# Php Pictionnary
 
 # Pictionnary By Teva Locandro
 
-Toutes les fonctionnalités ont été réalisées + la suppression des dessins + logo.
+Toutes les fonctionnalitÃ©s ont Ã©tÃ© rÃ©alisÃ©es + la suppression des dessins + logo.
 
-J'ai utilisé Bootstrap pour le design, et pour le logo j'ai utilisé photoshop.
+J'ai utilisÃ© Bootstrap pour le design, et pour le logo j'ai utilisÃ© photoshop.
