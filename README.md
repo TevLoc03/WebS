@@ -1,6 +1,6 @@
 # Php Pictionnary
 
-# Pictionnary By Teva Locandro
+## Pictionnary By Teva Locandro
 
 Toutes les fonctionnalités ont été réalisées + la suppression des dessins + logo.
 
